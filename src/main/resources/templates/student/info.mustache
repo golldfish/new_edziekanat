@@ -1,0 +1,56 @@
+{{> fragments/header}}
+{{> navbar}}
+
+<div class="container">
+    <div id="student-info">
+        {{#student}}
+            <div class="row">
+                <div class="col">
+                    Imie: {{name}}
+                </div>
+                <div class="col">
+                    Ilość ECTS: {{ectsPoints}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Nazwisko: {{lastName}}
+                </div>
+                <div class="col">
+                    Forma studiów: {{form}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Mail: {{mail}}
+                </div>
+                <div class="col">
+                    Semestr: {{semestr}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Grupa: {{#groupId}}{{id}}{{/groupId}}
+                </div>
+                <div class="col">
+                    Numer albumu: {{albumNumber}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Kierunek: {{fieldOfStudy}}
+                </div>
+                <div class="col">
+                    Stopień: {{degreeOfStudy}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Wydział: {{department}}
+                </div>
+            </div>
+        {{/student}}
+    </div>
+</div>
+
+{{> fragments/footer}}

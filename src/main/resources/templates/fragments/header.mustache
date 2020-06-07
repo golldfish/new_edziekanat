@@ -1,0 +1,61 @@
+<html lang="en">
+
+<head>
+    <title>E-dziekanat</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <script src="/webjars/jquery/3.5.1/jquery.js"></script>
+    <script src="/webjars/jquery-ui/jquery-ui.js"></script>
+    <script src="/webjars/popper.js/1.16.0/popper.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script>function openWindow(url) {
+        window.open(url, 'teacherUrl', 'toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=800,height=200')
+    }</script>
+    <script>
+        $(document).ready(function () {
+            $("#filterActive").click(function () {
+                if ($('#subjectsFilter').css('display') == 'none') {
+                    $('#subjectsFilter').show();
+                } else {
+                    $('#subjectsFilter').hide();
+                    $('#subjectsFilter').find('input').prop('checked', false);
+                    $(".data-row").each(function () {
+                        $(this).show();
+                    });
+                }
+            });
+
+            $('#do-filter').click(function () {
+                let isAnyCheckboxChecked = false;
+                $('#subjectsFilter').find('input').each(function () {
+                    if ($(this).is(":checked")) {
+                        isAnyCheckboxChecked = true;
+                    }
+                });
+                if (isAnyCheckboxChecked) {
+                    $(".data-row").each(function () {
+                        $(this).hide();
+                    });
+                    $('#subjectsFilter').find('input').each(function() {
+                        if ($(this).is(":checked")) {
+                            let filterSubjectName = $(this).val();
+                            $(".data-row").each(function () {
+                                if ($(this).find('#subject-name').text() == filterSubjectName) {
+                                    $(this).show();
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    $(".data-row").each(function () {
+                        $(this).show();
+                    });
+                }
+
+            });
+        });
+    </script>
+</head>
+
+<body>

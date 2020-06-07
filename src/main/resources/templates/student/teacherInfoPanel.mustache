@@ -1,0 +1,21 @@
+{{> fragments/header}}
+{{> navbar}}
+
+<div class="container">
+    <div id="student-info">
+        {{#teacher}}
+            <div class="row">
+                <div class="col">
+                    <button class="button"><a href="mailto:{{mail}}">Napisz wiadomość</a></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="button"><a href="/student/teacher/{{idTeacher}}">Informacje o prowadzącym</a></button>
+                </div>
+            </div>
+        {{/teacher}}
+    </div>
+</div>
+
+{{> fragments/footer}}

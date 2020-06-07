@@ -1,0 +1,37 @@
+{{> fragments/header}}
+{{> navbar}}
+
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Nazwa przedmiotu</th>
+            <th scope="col">Prowadzący</th>
+            <th scope="col">Oceny</th>
+            <th scope="col">Średnia ocen</th>
+            <th scope="col">Ocena końcowo-roczna</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#subjectDegrees}}
+            <tr>
+                <th>{{subjectTitle}}</th>
+                <td>
+                    {{#teachers}}
+                        <a class="page-link" href="#" onclick="openWindow('/student/teacher/{{idTeacher}}')">{{name}} {{lastName}}</a>
+                    {{/teachers}}
+                </td>
+                <td>{{degree}}</td>
+                <td>{{subjectAvgDegree}}</td>
+                <td>{{endDegree}}</td>
+            </tr>
+        {{/subjectDegrees}}
+        </tbody>
+    </table>
+    <p>Średnia wszystkich ocen: {{avg}}</p>
+    <p>Punkty ECTS potrzebne na kolejny semestr: {{ects}}</p>
+    <p>{{#stypendium}}Jest możliwość ubiegania się o stypendium{{/stypendium}}
+    {{^stypendium}}Nie ma możlwości ubiegania się o stypendium{{/stypendium}}</p>
+</div>
+
+{{> fragments/footer}}

@@ -1,0 +1,22 @@
+mysql:
+  host: 192.168.1.43
+  table: Test
+server:
+  error:
+    whitelabel:
+      enabled: false
+  port: 8585
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: mypass123
+    url: jdbc:mysql://${mysql.host:localhost}:3306/${mysql.table}
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect

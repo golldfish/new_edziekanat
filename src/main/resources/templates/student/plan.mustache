@@ -1,0 +1,57 @@
+{{> fragments/header}}
+{{> navbar}}
+
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Data</th>
+            <th scope="col">Od</th>
+            <th scope="col">Do</th>
+            <th scope="col">Sala</th>
+            <th scope="col">Przedmiot</th>
+            <th scope="col">Prowadzący</th>
+            <th scope="col">Prześlij rozwiązanie</th>
+        </tr>
+        </thead>
+        <tbody id="subjects">
+        {{#plan}}
+            <tr class="data-row">
+                <td>{{date}}</td>
+                <td>{{dateTimeFrom}}</td>
+                <td>{{dateTimeTo}}</td>
+                <td>{{room}}</td>
+                <td id="subject-name">{{subjectId.subjectName}}</td>
+                <td>
+                    {{#subjectId}}
+                        {{#teacherDAOList}}
+                            <a class="page-link" href="#"
+                               onclick="openWindow('/student/teacher/{{idTeacher}}/panel')">{{name}} {{lastName}}</a>
+                        {{/teacherDAOList}}
+                    {{/subjectId}}
+                </td>
+                <td>X</td>
+            </tr>
+        {{/plan}}
+        </tbody>
+    </table>
+
+    <div>
+        <button id="filterActive">Filtruj plan</button>
+        <div id="subjectsFilter" class="card" style="display: none;">
+            <div class="card-body">
+                <div class="row">
+                    {{#subjects}}
+                        <div class="col-4" id="filters">
+                            <input type="checkbox" value="{{subjectName}}" id="{{subjectName}}">
+                            <label for="{{subjectName}}">{{subjectName}}</label>
+                        </div>
+                    {{/subjects}}
+                </div>
+                <button id="do-filter">Zatwierdź</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{> fragments/footer}}
