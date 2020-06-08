@@ -19,5 +19,6 @@
    lub poprzez zastosowanie komendy _gradlew clean build_ (Dla użytkowników systemu windows).
    
    W przypadku uruchomienia poprzez zastowowanie wyżej wymienionej komendy, plik wynikowy .jar powinien znajdować się w katalogu _build/libs_. Należy uruchomić go podstawową komendą uruchamiającą pliki Javy.
-## 
 
+### Dodatkowe informacje
+Do projektu został dołączony plik _Test.sql_ zawierający kompleksową bazę danych wraz z przykładowymi wartościami. 
