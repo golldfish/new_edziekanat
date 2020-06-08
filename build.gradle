@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.zut.edziekanat'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 sourceCompatibility = '1.8'
 
 configurations {
@@ -20,7 +20,9 @@ repositories {
 
 dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-mustache', version: '2.3.0.RELEASE'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin
+	compile group: 'org.springframework.boot', name: 'spring-boot-maven-plugin', version: '2.3.0.RELEASE'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mustache', version: '2.3.0.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.3.0.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.3.0.RELEASE'
 

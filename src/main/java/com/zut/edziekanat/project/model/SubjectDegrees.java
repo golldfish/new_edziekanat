@@ -1,20 +1,22 @@
 package com.zut.edziekanat.project.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 import com.zut.edziekanat.project.model.dao.TeacherDAO;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 
 /**
  * The type Subject degrees.
  */
 @Getter
 @RequiredArgsConstructor
-public class SubjectDegrees
-{
+public class SubjectDegrees {
     /**
      * The Subject title.
      */
@@ -43,32 +45,28 @@ public class SubjectDegrees
     /**
      * Make avg.
      */
-    public void makeAvg()
-    {
-        Double avg = 0d;
-        for (Double value : degree)
-        {
-            avg += value;
-        }
-        subjectAvgDegree = 1.0d * avg / degree.size();
-
-        if (subjectAvgDegree % 1 < 0.25)
-        {
-            endDegree = ((double) Math.round(subjectAvgDegree));
-        }
-        else if (0.25 <= (subjectAvgDegree % 1) && (subjectAvgDegree % 1) < 0.75)
-        {
-            endDegree = ((double) Math.round(subjectAvgDegree)) + 0.5;
-        }
-        else
-        {
-            endDegree = ((double) Math.round(subjectAvgDegree)) + 1;
+    public void makeAvg() {
+        Double sumDegree = 0d;
+        if (degree.size() > 0) {
+            for (Double value : degree) {
+                sumDegree += value;
+            }
+            final DecimalFormat df = new DecimalFormat("###.##", DecimalFormatSymbols.getInstance(Locale.US));
+            subjectAvgDegree = Double.parseDouble(df.format(1.0d * sumDegree / degree.size()));
+            if (degree.size() < 3) {
+                endDegree = 0d;
+            } else if (subjectAvgDegree % 1 < 0.25) {
+                endDegree = Math.floor(subjectAvgDegree);
+            } else if (0.25 <= (subjectAvgDegree % 1) && (subjectAvgDegree % 1) < 0.75) {
+                endDegree = Math.floor(subjectAvgDegree) + 0.5;
+            } else {
+                endDegree = Math.floor(subjectAvgDegree) + 1;
+            }
         }
     }
 
     @Override
-    public boolean equals(final Object o)
-    {
+    public boolean equals(final Object o) {
         if (this == o)
             return true;
         if (o == null || getClass() != o.getClass())
@@ -78,8 +76,7 @@ public class SubjectDegrees
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return Objects.hash(subjectTitle, degree, teachers, subjectAvgDegree, endDegree);
     }
 }

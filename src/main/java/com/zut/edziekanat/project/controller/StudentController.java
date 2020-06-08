@@ -72,9 +72,7 @@ public class StudentController {
         final StudentDAO studentDAO = student.getStudent(Integer.parseInt(album));
 
         final List<SubjectDegrees> degrees = student.getStudentDegreesByAlbumNumber(studentDAO.getAlbumNumber());
-        final DecimalFormat df = new DecimalFormat("###.##", DecimalFormatSymbols.getInstance(Locale.US));
-        final double averageDegree = Double
-                .parseDouble(df.format(student.showAverageOfSubject(studentDAO.getAlbumNumber())));
+        double averageDegree = getEndAvgDegree(degrees);
         model.addAttribute("student", studentDAO);
         model.addAttribute("subjectDegrees", degrees);
         model.addAttribute("avg", averageDegree);
@@ -86,6 +84,18 @@ public class StudentController {
         }
 
         return "student/degree";
+    }
+
+    private double getEndAvgDegree(List<SubjectDegrees> degrees) {
+        final DecimalFormat df = new DecimalFormat("###.##", DecimalFormatSymbols.getInstance(Locale.US));
+        double degree = 0;
+        if(degrees.size() > 0){
+            for (final SubjectDegrees subjectDegrees : degrees) {
+                degree += subjectDegrees.getEndDegree();
+            }
+            degree = degree / degrees.size();
+        }
+        return Double.parseDouble(df.format(degree));
     }
 
     /**

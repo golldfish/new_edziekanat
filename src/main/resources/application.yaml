@@ -11,8 +11,8 @@ spring:
     exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: mypass123
     url: jdbc:mysql://${mysql.host:localhost}:3306/${mysql.table}
+    password: mypass123
     username: root
   jpa:
     hibernate:
